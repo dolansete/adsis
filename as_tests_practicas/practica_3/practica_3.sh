@@ -1,6 +1,6 @@
 #!/bin/bash
 #778097, Bara Lles, Hector, T, 1, A
-#778093, Dominguez Nogueras, Pablo, T, 1, A
+#777093, Dominguez Nogueras, Pablo, T, 1, A
 if [ $UID -ne 0 ]; then #Si el uid no es 0 no tenemos privilegios de administración
 	echo "Este script necesita privilegios de administracion" >&2 #Mensaje de error (redireccionado a stderr)
 	exit 1
