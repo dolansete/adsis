@@ -33,8 +33,8 @@ elif [ $1 = "-s" ]; then #Parámetro 1 opción de eliminar usuario
 	while read line ; do #Leemos los contenidos del fichero
 		id=$(echo $line | cut -d ',' -f 1)
 		if id -u $id >/dev/null 2>&1; then #Cogemos sólo el id (Nos saltamos el resto de la línea)
-			home="$(echo ~${id})"	#TODO: Esto debería coger el home del usuario
-			if tar -cvf /extra/backup/${id}.tar /home/${id} >/dev/null 2>&1; then #Guardamos el directorio home en un tar ubicado en /extra/backup
+			home=$(grep $id /etc/passwd | cut -d ':' -f 6) #Buscamos el directorio home del usuario en /etc/passwd que está en la sexta posición si contamos como separadores los ':'
+			if tar -cvf /extra/backup/${id}.tar $home >/dev/null 2>&1; then #Guardamos el directorio home en un tar ubicado en /extra/backup
 				pkill -u $id #Matamos a todos los procesos del usuario que queremos borrar
 				userdel -r $id >/dev/null 2>&1 #Eliminamos al usuario 
 			fi
