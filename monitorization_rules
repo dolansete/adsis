@@ -1,0 +1,13 @@
+Usuarios: 
+Carga media \(1',5',15'\): 0.[0-9][0-9]
+Memoria ocupada:
+Memoria libre:
+Memoria usada swap: 
+Espacio ocupado y libre:
+Filesystem
+/dev/
+Puertos abiertos: [0-2][0-9]$
+Conexiones establecidas: 
+Número de procesos: [0-6][0-9]$
+Media de sar:
+%idle: [2-9][0-9]
