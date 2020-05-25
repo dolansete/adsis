@@ -1,4 +1,6 @@
 #!/bin/bash
+#778097, Bara Lles, Hector, T, 1, A
+#777093, Dominguez Nogueras, Pablo, T, 1, A
 NUSER=$(uptime | cut -d ' ' -f 7)
 ALOAD=$(uptime | cut -d ' ' -f 12-14)
 MEMU=$(free | awk '{print $3}' | cut -d $'\n' -f 2)
