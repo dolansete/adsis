@@ -1,0 +1,15 @@
+En /etc/rsyslog.conf hemos descomentado cron y añadido la linea local0.info /var/log/monitorizacion (Luego hemos hecho restart del servicio)
+Después hemos puesto en crontab el script practica6_parte1.sh | logger -p local0.info >/dev/null 2>&1 (Para no enviar mensajes)
+Hemos descomentado en rsyslog.conf TCP y UDP para poder conectarnos.
+En la maquina remota, en rsyslog hemos puesto local0.info y la dirección de local (@192.168.56.2:514).
+Adicionalmente hemos instalado sysstat y hemos puesto en /etc/default/sysstat ENABLED a true y en /etc/cron.d/sysstat los Activity reports han sido cambiados poniendo un * en los minutos.
+En el script de la parte 1 hemos añadido los atributos que nos devolvía la última línea de sar (Donde esta la media Average)
+
+Parte 2
+Hemos instalado logcheck y hemos añadido al archivo /etc/logcheck/logcheck.logfiles el archivo monitorizacion. Después creamos un archivo llamado monitorization_rules, dentro de la carpeta /etc/logcheck/ignore.d.server
+En ese archivo hemos colocado unos patrones que nosotros consideramos que deberian ser inofesivos y por tanto no deberian ser notificados al usuario mediante el correo enviado por logcheck.
+Consideraciones:
+Solo comprobamos la carga media del minuto anterior, ya que el script se ejecuta con cron cada minuto, lo que haria imposible que la carga media fuera alta en los 5 o 15 últimos minutos sin haberlo notificado.
+Los puertos abiertos han de ser superiores 29 para que llegue mensaje.
+También hemos hecho que los procesos deban ser mayores a 69 para enviar mensaje y que el %idle de sar sea inferior al 20 para lo mismo.
+Por último hemos cambiado /etc/cron.d/logcheck, haciendo que envíe mensajes cada minuto.
